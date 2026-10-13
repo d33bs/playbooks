@@ -1,0 +1,113 @@
+<!--
+PROJECT CARD TEMPLATE
+Copy this file into the root of a project repository as PROJECT_CARD.md and fill it in.
+See ../project_card.md for guidance on what belongs in each section.
+Keep every section; write "N/A" with a one-line reason rather than deleting a section that doesn't apply.
+-->
+
+# \<Project Name> — Project Card
+
+> One-paragraph summary: what question this project answers, what data it uses, and its current status.
+
+## 1. Overview
+
+| Field                | Value                                             |
+| -------------------- | ------------------------------------------------- |
+| Project name         |                                                   |
+| Status               | planning / pilot / full-run / complete / archived |
+| Owner(s)             |                                                   |
+| Related repositories |                                                   |
+| Related publications |                                                   |
+| Last updated         | YYYY-MM-DD                                        |
+
+## 2. Design
+
+- Hypothesis / question:
+- Experimental design (arms, perturbations/treatments, replicates):
+- Positive/negative controls (e.g. DMSO/vehicle, a known-reference compound, a control cell line present across plates):
+- Plating/seeding conditions, if varied (seeding density, coating, fixation variant):
+- Plate / batch layout (or link to platemap file(s)):
+- Timepoints:
+- Sample size (e.g. number of plates, wells, patients, cell lines):
+- Data waves/batches: if data were collected in more than one independent wave/round (e.g. a pilot wave followed by a production wave, or waves with different cell lines), note each wave here and give it its own row/note in the sections below rather than silently merging them.
+
+## 3. Biological material
+
+### 3.1 Patients / subjects
+
+| Field                             | Value |
+| --------------------------------- | ----- |
+| Patient/subject count             |       |
+| Source / cohort                   |       |
+| Demographics (age, sex)           |       |
+| Diagnosis / disease subtype       |       |
+| IRB / ethics approval             |       |
+| De-identification / consent notes |       |
+| Patient metadata file (location)  |       |
+
+Patient-level detail (one row per patient, including diagnosis/subtype and which wells/plates they map to) often lives in a separate metadata file (CSV, XLSX, or DOCX) rather than inline in a README — record its path above rather than duplicating the full table here.
+If the project has no human subjects, write "N/A — no patient samples" here rather than deleting the section.
+
+### 3.2 Cell types
+
+| Field                                                              | Value |
+| ------------------------------------------------------------------ | ----- |
+| Cell type(s) / line(s)                                             |       |
+| Tissue of origin                                                   |       |
+| Primary vs. immortalized                                           |       |
+| Genetic background / perturbation (e.g. CRISPR, isogenic)          |       |
+| Control cell line(s) (e.g. a reference line imaged on every plate) |       |
+
+## 4. Assay
+
+### 4.1 Stains / channels
+
+| Channel name | Stain / dye / antibody | Target | Channel code (image filename suffix or instrument channel ID) |
+| ------------ | ---------------------- | ------ | ------------------------------------------------------------- |
+|              |                        |        |                                                               |
+
+Example (Cell Painting): DNA = Hoechst 33342 (target: nucleus), ER = concanavalin A/Alexa 488, RNA/nucleoli = SYTO 14, AGP = phalloidin + WGA, Mito = MitoTracker Deep Red.
+The "channel code" column matters as much as the stain name — real pipelines key off of it (e.g. `d0`-`d4` filename suffixes, wavelength codes like `405`/`488`/`555`/`640` in filenames, or a numbered TIFF order paired with a channel name in an instrument XML sidecar).
+
+- Assay protocol reference (link or doc):
+- Fixation method:
+
+## 5. Imaging
+
+| Field                                                       | Value |
+| ----------------------------------------------------------- | ----- |
+| Microscope / instrument(s)                                  |       |
+| Objective / magnification (e.g. `20x`, `60x/1.35 NA oil`)   |       |
+| Image format (e.g. `.tiff`, `.czi`, `.nd2`)                 |       |
+| Bit depth (e.g. `16-bit`)                                   |       |
+| Image dimensions (e.g. `(Z, Y, X)` or pixel width x height) |       |
+| Channels per site                                           |       |
+| Sites / fields of view (FOVs) per well                      |       |
+| Z-planes                                                    |       |
+
+If more than one microscope or acquisition format was used (e.g. different instruments per collaborator, or per data wave), list each one as its own row or sub-table rather than picking just one.
+
+## 6. Data
+
+| Field                         | Value |
+| ----------------------------- | ----- |
+| Raw data location             |       |
+| Processed data location       |       |
+| Data access / restrictions    |       |
+| Approx. size                  |       |
+| Pipeline / processing repo(s) |       |
+
+## 7. Contacts & provenance
+
+| Role                   | Name |
+| ---------------------- | ---- |
+| PI                     |      |
+| Project lead           |      |
+| Data analyst(s)        |      |
+| External collaborators |      |
+
+## 8. Changelog
+
+| Date | Change | By  |
+| ---- | ------ | --- |
+|      |        |     |
