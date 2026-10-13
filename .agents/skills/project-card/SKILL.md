@@ -1,6 +1,15 @@
-______________________________________________________________________
-
-## name: project-card description: Use when filling out or refreshing a project's PROJECT_CARD.md. Know where to find design, patient, cell type, stain, and imaging facts. version: 0.1.0 author: Dave Bunten (d33bs), Hermes Agent license: MIT platforms: \[linux, macos, windows\] metadata: hermes: tags: \[project-card, documentation, metadata, high-content-imaging\] related_skills: \[\]
+---
+name: project-card
+description: Use when filling out or refreshing a project's PROJECT_CARD.md. Know where to find design, patient, cell type, stain, and imaging facts.
+version: 0.1.0
+author: Dave Bunten (d33bs), Hermes Agent
+license: MIT
+platforms: [linux, macos, windows]
+metadata:
+  hermes:
+    tags: [project-card, documentation, metadata, high-content-imaging]
+    related_skills: []
+---
 
 # Project Card
 
@@ -23,13 +32,16 @@ project's repo and data, not by guessing or leaving placeholders.
    the target project's root as `PROJECT_CARD.md` if it doesn't already
    exist. If it exists, read it first — never blind-overwrite an existing
    card; merge new findings into the existing structure.
+1. Determine data classification (section 1 of the card) early, before
+   filling anything else in — it governs whether later fields may be
+   written inline or must be references only (see Pitfalls).
 1. Work section by section. For each field, search the target repo and its
    linked data location before asking the user — the evidence usually
    already exists in one of the sources in the table below. Only ask the
    user for a field once you've actually looked and it's genuinely missing
    (e.g. an IRB approval number not recorded in any repo file).
 1. Record the source for each non-obvious fact as an inline markdown
-   comment next to the field (e.g. \`<!-- from configs/plate_map.csv -->")
+   comment next to the field (e.g. `<!-- from configs/plate_map.csv -->`)
    so a future reader can verify it without re-deriving it.
 1. Never leave a field blank without an explanation — write
    "N/A — \<reason>" per the template's own instruction instead of
@@ -38,7 +50,7 @@ project's repo and data, not by guessing or leaving placeholders.
    was filled in or updated and the date.
 1. Run the target repo's own markdown gate before handing back changes —
    check its `.pre-commit-config.yaml` first; don't assume it matches this
-   playbooks repo's gate (mdformat-gfm + codespell).
+   playbooks repo's gate (mdformat-gfm + mdformat-frontmatter + codespell).
 1. Report which sections you filled from evidence, which you left as
    "N/A", and which still need the user's input — don't claim the card is
    complete if any field is a guess.
@@ -47,6 +59,7 @@ project's repo and data, not by guessing or leaving placeholders.
 
 | Project card field                                                           | Look here first                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Data classification (open / confidential / highly confidential / HIPAA)      | any data use agreement (DUA) or data transfer agreement with the collaborator, the IRB protocol, repo visibility (public vs. private) and its license file, and — when none of those exist yet — ask the PI/project lead directly; never infer it from the data alone                                                                                                                                                                                                                                                                                      |
 | Design (hypothesis, arms, perturbations, controls, replicates, plate layout) | README, `configs/`/`metadata/` plate maps or platemap CSVs, an analysis repo's `0.download-data`-style first module, any `plan.md`/design doc, the GitHub issue/PR that kicked off the project                                                                                                                                                                                                                                                                                                                                                             |
 | Plating/seeding conditions (density, coating, fixation variant)              | the platemap CSV itself — real plate maps commonly carry `cell_line,row,column,well,seeding_density,condition` columns; the README section describing plate layout usually narrates what `condition` values mean (e.g. "Standard", "Synthemax coated", "double PFA fixation")                                                                                                                                                                                                                                                                              |
 | Control cell line(s)                                                         | the platemap/well metadata (a line repeated across every plate, e.g. U2-OS, is usually the control) and the README's data/plate-map narration                                                                                                                                                                                                                                                                                                                                                                                                              |
@@ -65,6 +78,12 @@ the same field rather than inventing a new shape for it.
 
 ## Pitfalls
 
+- Treat data classification as a gate, not just a field: once it's anything
+  other than "open" and the repo is (or may become) public, do not write
+  actual patient identifiers, dates of birth, or other direct identifiers
+  into `PROJECT_CARD.md` — write the location of the restricted metadata
+  file instead and leave the identifiers there. Get this backwards and the
+  card itself becomes the leak.
 - Don't infer image format, bit depth, or dimensions purely from code
   comments or a pipeline file — these drift from reality; check an actual
   image file when one is reachable, or the README's stated instrument specs.
@@ -81,6 +100,8 @@ the same field rather than inventing a new shape for it.
 - Don't fabricate patient counts, IRB numbers, or demographics — if the
   repo and reachable data don't state it, leave the field as
   "N/A — not found in repo/data; ask \<role>" and flag it in your report.
+- Don't guess data classification either — if no DUA/IRB/visibility signal
+  settles it, ask the PI/project lead rather than defaulting to "open".
 - A stale card is worse than a missing one only if nobody notices it's
   stale — always add the Changelog row so readers can see when a field
   was last verified.
@@ -93,6 +114,8 @@ the same field rather than inventing a new shape for it.
   or explicit "user-provided") — nothing is a guess.
 - Every section of the template is present in the output card, with
   "N/A — reason" for inapplicable ones, never a deleted section.
+- Data classification is set, and if it's not "open", no direct patient
+  identifiers appear anywhere else in the card.
 - The target repo's own lint/pre-commit passes on the new/edited
   `PROJECT_CARD.md`.
 - The Changelog has a new row dated today describing what changed.

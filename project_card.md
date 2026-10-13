@@ -25,18 +25,24 @@ Skip it only for small, short-lived exploratory work that will not become its ow
 
 Regardless of project specifics, every project card answers the same questions:
 
-| Section             | Always answers                                                                |
-| ------------------- | ----------------------------------------------------------------------------- |
-| Overview            | What is this project, who owns it, what is its status right now?              |
-| Design              | What is the hypothesis, the experimental design, and the scale of the data?   |
-| Biological material | Who/what are the patients or subjects, and what cell type(s) are used?        |
-| Assay               | What stains, dyes, or antibodies mark what, on what channel?                  |
-| Imaging             | What microscope, image format, bit depth, and dimensions produced the images? |
-| Data                | Where do the raw and processed data live, and who/what can access them?       |
-| Contacts            | Who is the PI, project lead, and who else is involved?                        |
-| Changelog           | What has materially changed about the project, and when?                      |
+| Section             | Always answers                                                                           |
+| ------------------- | ---------------------------------------------------------------------------------------- |
+| Overview            | What is this project, who owns it, what is its status and data classification right now? |
+| Design              | What is the hypothesis, the experimental design, and the scale of the data?              |
+| Biological material | Who/what are the patients or subjects, and what cell type(s) are used?                   |
+| Assay               | What stains, dyes, or antibodies mark what, on what channel?                             |
+| Imaging             | What microscope, image format, bit depth, and dimensions produced the images?            |
+| Data                | Where do the raw and processed data live, and who/what can access them?                  |
+| Contacts            | Who is the PI, project lead, and who else is involved?                                   |
+| Changelog           | What has materially changed about the project, and when?                                 |
 
 See the [template](templates/project_card_template.md) for the full field-by-field layout, including examples (e.g. Cell Painting channel naming) for the assay and imaging sections.
+
+### Data classification
+
+Every card records a data classification: **open**, **confidential**, **highly confidential**, or **HIPAA**. This answers the question raised in [issue #5](https://github.com/WayScience/playbooks/issues/5) — "is the data open, confidential, highly confidential, HIPAA?" — explicitly and up front, rather than leaving it implicit or discovered only once something goes wrong.
+
+Because project cards live in project repositories (which are frequently public, per [GitHub Strategy](github_strategy.md)), the classification is not just descriptive — it constrains what the card itself is allowed to say: anything other than "open" means the card must reference where restricted details (patient identifiers, raw clinical metadata, etc.) live rather than reproducing them inline. See the template's own note in section 1 for the specific rule.
 
 ## 4. Why a fixed template
 

@@ -15,10 +15,13 @@ Keep every section; write "N/A" with a one-line reason rather than deleting a se
 | -------------------- | ------------------------------------------------- |
 | Project name         |                                                   |
 | Status               | planning / pilot / full-run / complete / archived |
+| Data classification  | open / confidential / highly confidential / HIPAA |
 | Owner(s)             |                                                   |
 | Related repositories |                                                   |
 | Related publications |                                                   |
 | Last updated         | YYYY-MM-DD                                        |
+
+Data classification governs what this card itself may say. If classification is anything other than "open" and this repository is (or may become) public, do not write actual patient identifiers, dates of birth, or other direct identifiers into this file — reference the restricted metadata file's location instead (see 3.1) and keep the identifiers only in the access-controlled location.
 
 ## 2. Design
 
@@ -89,13 +92,16 @@ If more than one microscope or acquisition format was used (e.g. different instr
 
 ## 6. Data
 
-| Field                         | Value |
-| ----------------------------- | ----- |
-| Raw data location             |       |
-| Processed data location       |       |
-| Data access / restrictions    |       |
-| Approx. size                  |       |
-| Pipeline / processing repo(s) |       |
+| Field                            | Value |
+| -------------------------------- | ----- |
+| Raw data location                |       |
+| Processed data location          |       |
+| Data access / restrictions       |       |
+| Data use agreement / DUA on file |       |
+| Approx. size                     |       |
+| Pipeline / processing repo(s)    |       |
+
+"Data access / restrictions" should be consistent with the "Data classification" field in section 1 (e.g. who may access it, whether a data use agreement or IRB protocol governs it, and any embargo before public release).
 
 ## 7. Contacts & provenance
 
